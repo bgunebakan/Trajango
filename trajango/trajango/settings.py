@@ -25,7 +25,7 @@ SECRET_KEY = '!t@+$ek)myy4mw2*155jq8(i@p))naf#lcm8l+c58ys2oko8r#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['flow.creworker.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
