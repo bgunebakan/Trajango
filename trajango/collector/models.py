@@ -13,7 +13,8 @@ class Location(models.Model):
     lon = models.FloatField(default=0)
     altitude = models.FloatField(default=0)
 
-    hdop = models.FloatField(default=0)
     speed = models.FloatField(default=0)
-
+    accuracy = models.FloatField(default=0)
+    batt = models.FloatField(default=0)
+    bearing = models.FloatField(default=0)
     timestamp = models.DateTimeField()
