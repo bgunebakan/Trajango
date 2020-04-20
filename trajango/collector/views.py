@@ -15,6 +15,9 @@ def index(request):
     except KeyError as e:
         print(e)
         return HttpResponse(e)
+    except ValueError as e:
+        print(e)
+        return HttpResponse(e)
 
     try:
         device = Device.objects.get(dev_id=dev_id)
