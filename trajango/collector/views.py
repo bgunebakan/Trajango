@@ -2,7 +2,8 @@ from django.http import HttpResponse
 from .models import Device, Location
 from datetime import datetime
 from django.utils.timezone import make_aware
-
+from django.template import loader
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     try:
@@ -42,3 +43,20 @@ def index(request):
                                 timestamp=created_datetime)
         return HttpResponse("OK")
     return HttpResponse("You're at the collector index.")
+
+@login_required
+def map(request):
+    all_devices = Device.objects.all()
+    last_device_locations = list()
+    for device in all_devices:
+        last_loc = Location.objects.filter(device=device).latest('timestamp')
+        last_device_locations.append(last_loc)
+
+    lastest_locations = Location.objects.order_by('-timestamp')[:10]
+    template = loader.get_template('map.html')
+    context = {
+        'lastest_locations': lastest_locations,
+        'last_device_locations': last_device_locations,
+        'all_devices': all_devices
+    }
+    return HttpResponse(template.render(context, request))

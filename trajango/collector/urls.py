@@ -5,4 +5,5 @@ from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     path('', csrf_exempt(views.index), name='index'),
+    path('map/', views.map, name='map'),
 ]

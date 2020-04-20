@@ -4,7 +4,7 @@ from django.db import models
 class Device(models.Model):
     name = models.CharField(max_length=200)
     dev_id = models.IntegerField()
-
+    icon = models.CharField(max_length=200,default="fa fa-automobile")
 
 class Location(models.Model):
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
